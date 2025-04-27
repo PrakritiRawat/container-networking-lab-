@@ -1,9 +1,7 @@
-
-
-# 🚀 Docker Bridge Networking: Balancing Isolation & Connectivity
+# 🚀 Container Networking Lab: Balancing Isolation & Connectivity
 
 ## 📌 Objective
-The goal of this exercise is to explore and demonstrate **network isolation** within Docker containers.  
+The goal of this lab exercise is to explore and demonstrate **network isolation** within Docker containers.  
 You’ll learn how containers inside the **same custom bridge network** can communicate seamlessly, while those on **different networks remain isolated** — a critical concept for securing containerized applications and microservices.
 
 ---
@@ -19,12 +17,12 @@ Docker networking enables **secure communication** between containers while main
 - **Macvlan** – Assigns a unique MAC address to each container.
 - **None** – Completely disables networking.
 
-🔍 In this exercise, we focus on the **Custom Bridge Network** for controlled and secure communication.
+🔍 In this lab, we focus on the **Custom Bridge Network** for controlled and secure communication.
 
 ---
 
 ## ⚡ Why Use a Custom Bridge Network?
-A **custom bridge network** provides several advantages:
+A **custom bridge network** offers several advantages:
 - ✅ **Security**: Containers on different networks are isolated by default.
 - ✅ **Performance**: Direct internal communication without external routing.
 - ✅ **Service Discovery**: DNS-based name resolution between containers.
@@ -64,7 +62,7 @@ Inspect the network and view container IPs:
 docker network inspect prakriti-bridge
 ```
 
-✅ Expected:
+✅ Expected Output:
 ```
 prakriti-database: 172.20.240.1
 prakriti-server-A: 172.20.240.2
@@ -99,7 +97,7 @@ docker run -itd --name=prakriti-server-B busybox
 ```bash
 docker inspect -format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' prakriti-server-B
 ```
-(Example: `172.17.0.2`)
+(Example IP: `172.17.0.2`)
 
 ---
 
@@ -110,34 +108,34 @@ docker exec -it prakriti-database ping 172.17.0.2
 ```
 
 🚨 **Expected Outcome:**  
-The ping should **fail**, proving that containers on **different networks cannot talk** to each other by default.
+The ping should **fail**, proving that containers on **different networks cannot communicate** by default.
 
 ---
 
 ## 🔍 6. Inspect Networks for Confirmation
-To verify network connections:
+To verify the network associations:
 
 ```bash
 docker network inspect prakriti-bridge
 docker network inspect bridge
 ```
 
-✅ `prakriti-bridge` will contain `prakriti-database` and `prakriti-server-A`.  
-✅ `bridge` will contain `prakriti-server-B`.
+✅ `prakriti-bridge` should contain `prakriti-database` and `prakriti-server-A`.  
+✅ `bridge` should contain `prakriti-server-B`.
 
 ---
 
 ## 🏆 Conclusion
 - 🔥 **Containers within the same network** can communicate directly.
 - 🔒 **Containers across different networks** are **isolated by default**.
-- 🎯 Docker’s **networking model** enforces secure, controlled communication.
+- 🎯 Docker’s **networking model** ensures secure and controlled communication.
 
 🚀 **You now have a solid understanding of Docker Bridge Networking and container isolation!** 🎯
 
 ---
 
 # 🛠 Bonus Tips:
-- 📤 **To remove the network:**
+- 📤 **To remove the custom network:**
   ```bash
   docker network rm prakriti-bridge
   ```
@@ -150,10 +148,10 @@ docker network inspect bridge
 
 # 🌟 Final Words
 Mastering container networking is **key** to building scalable, secure, and efficient microservices architectures.  
-🔹 Keep exploring more about **Overlay Networks** and **Docker Compose networking** next!
+🔹 Continue exploring **Overlay Networks**, **Docker Compose**, and **advanced networking models** to enhance your container expertise!
 
 🎨 **Happy Dockerizing, Prakriti!** 🚀
 
 ---
 
----
+  
